@@ -1,0 +1,21 @@
+name: Infinite Ping Example
+
+on: [push]
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Send ICMP Echo Requests in an Infinite Loop
+        run: |
+          # Replace 'example.com' with the target host you want to ping
+          TARGET_HOST="www.blobtown.com"
+
+          while true; do
+            echo "Pinging $TARGET_HOST"
+            ping -c 1 $TARGET_HOST
+            sleep 1  # Wait for 1 second between pings
+          done
